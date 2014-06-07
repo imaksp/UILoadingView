@@ -19,7 +19,11 @@ You may also specify custom text to use instead of "Loading..."
 let loadingView = UILoadingView(frame: self.view.bounds, text: "Logging in...")
 ```
 
-When you want the view to disappear, do this:
+When you want to remove the view, there are a few options:
 ```
 loadingView.removeFromSuperview()
 ```
+```
+self.view.subviews[self.view.subviews.endIndex-1].removeFromSuperview()
+```
+depending on if you have access to the variable loadingView when you want to remove it.
