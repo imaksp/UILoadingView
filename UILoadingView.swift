@@ -24,7 +24,11 @@ class UILoadingView : UIView {
         
     }
     
-    @lazy var label : UILabel = {
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var label : UILabel = {
         var l = UILabel()
         l.font = UIFont.systemFontOfSize(UIFont.systemFontSize())
         return l
@@ -32,7 +36,8 @@ class UILoadingView : UIView {
     var spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     
     override func layoutSubviews() {
-        var labelSize: CGSize = (self.label.text as NSString).sizeWithFont(self.label.font)
+        var labelString:NSString = self.label.text!
+		var labelSize: CGSize = labelString.sizeWithAttributes([NSFontAttributeName: self.label.font])
         var labelFrame: CGRect = CGRect()
         labelFrame.size = labelSize
         self.label.frame = labelFrame
